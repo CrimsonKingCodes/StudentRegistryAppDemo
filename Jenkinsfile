@@ -19,20 +19,16 @@ pipeline{
     stage('Install dependencies'){
       steps{
         script{
-          if(isUnix()){
-            sh 'npm install'
-          } else{
-            sh 'npm install'
-          }
+          git branch: 'main', url: 'https://github.com/CrimsonKingCodes/StudentRegistryAppDemo'
         }
       }
     }
     stage('Start application and run tests'){
       steps{
         script{
-          sh 'npm start &'
-          sh 'wait-on http://localhost:8090'
-          sh 'npm test'
+          bat 'npm start &'
+          bat 'wait-on http://localhost:8090'
+          bat 'npm test'
         }
       }
     }
